@@ -1,29 +1,41 @@
-# MySQL Cheat Sheet <b><hr></b>
+# MySQL Cheat Sheet
 
-## DCL <hr>
-`GRANT [privileges] ON [object] TO [user@host]`<br>
-<b>[privileges]</b> - specifies access rights, like create, delete, update etc... Multiple privileges can be assigned given they are seperated by commas. <br>
-<b>[object]</b> - The level on which the access rights are granted, like, on global level it is denoted by \*.\*, a database, a table etc.. eg: 'GRANT CREATE, UPDATE, INSERT ON studentdb.* TO balaji@localhost'. For assigning admistrative privileges use object as studentdb database. <br>
-<b>[user@host]</b> - user is mysql use and host is the server host. usually root@localhost.
+## DCL
+<!------------------------------------------------>
+`GRANT [privileges] ON [object] TO [user@host];`<br>
+<u>[privileges]</u> - specifies access rights, like create, delete, update etc... Multiple privileges can be assigned given they are seperated by commas. <br>
+<u>[object]</u> - The level on which the access rights are granted, like, on global level it is denoted by \*.\*, a database, a table etc.. eg: 'GRANT CREATE, UPDATE, INSERT ON studentdb.* TO balaji@localhost'. For assigning admistrative privileges use object as studentdb database. <br>
+<u>[user@host]</u> - user is mysql use and host is the server host. usually root@localhost.
 
-`GRANT PROXY ON [user] TO [user]`<br>
+`GRANT PROXY ON [user] TO [user];`<br>
 It enables one user to be a proxy for other users. eg: 'GRANT PROXY ON root TO balaji@localhost'
 
-`SHOW GRANTS FOR [user@host]`
+`SHOW GRANTS FOR [user@host];` <br>
 
-`REVOKE [privileges] ON [object] FROM [user.host]`
+`REVOKE [privileges] ON [object] FROM [user.host];` <br>
 eg: 'REVOKE INSERT(col1, col2), SELECT(col1), UPDATE(col2) ON student.user TO balaji@localhost' student is database, user is a table. To revoke all grants use 'REVOKE ALL, GRANT OPTION FROM balaji@localhost'
 
-`REVOKE PROXY ON [user] FROM [user]`
+`REVOKE PROXY ON [user] FROM [user];`
 
-## DDL <hr>
-`CREATE DATABASE [database name]`
-`SHOW CREATE DATABASE [database name]`
-We can review the newly created database using this query, that returns the database name, character set, and collation of the database. <br>
-`SHOW DATABASES`
-`USE [database]`
+## DDL
+<!------------------------------------------------>
+`CREATE DATABASE [database name];` 
+
+`SHOW CREATE DATABASE [database name];` <br>
+We can review the newly created database using this query, that returns the database name, character set, and collation of the database.
+
+```
+SHOW DATABASES LIKE [pattern];
+OR,  
+SHOW DATABASES WHERE [expression];
+```
+<u>[expression]</u> - [Regular expression](https://www.javatpoint.com/mysql-regular-expressions)
+
+`SHOW DATABASES;` 
+
+`USE [database];` <br>
 Using this query we can start working on our database, provided the user have required privileges. <br>
-`DROP DATABASE [database]`
+`DROP DATABASE [database];` <br>
 We can also do this by replacing DATABASE with SCHEMA, since mysql understands both are same.
 
 ```
@@ -33,13 +45,70 @@ CREATE TABLE [table name](
 [column definition] [constraints],
 [table constraints]
 );
-```
-<b>[column definition]</b> - The column/ attribute name with it's data type.   
-<b>[table constraints]</b> - It specifies the table constraints such as PRIMARY KEY, UNIQUE KEY, FOREIGN KEY, CHECK, etc.
+```     
+<br>
+<u>[column definition]</u> - The column/ attribute name with it's data type.  <br>
+<u>[constraints]</u>     - constraints applied on attributes like, NOT NULL, UNIQUE, and AUTO_INCREMENT etc... <br>
+<u>[table constraints]</u> - It specifies the table constraints such as PRIMARY KEY, UNIQUE KEY, FOREIGN KEY, CHECK, etc.
 
-`SHOW TABLES`
-`DESCRIBE [table name]`
+`SHOW TABLES;`
+
+`DESCRIBE [table name];` <br>
 To see information or structure of a table. The database must be selected using the USE query or the database must be given.
+
+`DROP TABLE [table name];` <br>
+To drop a table while working on that database
+
+`DROP TABLE [schema name].[table name];`
+
+`TRUNCATE TABLE [table name];`<br>
+removes the complete data without removing its structure
+
+```
+ALTER TABLE [table name]  
+ADD [col definition] [constraints];  
+```
+Add a column to the table
+
+```
+ALTER TABLE table_name  
+ ADD [col def] [constraints]  
+ [ FIRST | AFTER column_name ],  
+ADD [col def] [constraints] 
+[ FIRST | AFTER column_name ],  
+  ...  
+;  
+```
+Add multiple columns to the table
+
+```
+ALTER TABLE [table name]  
+MODIFY [col definition] [constraints]  
+[ FIRST | AFTER column_name ];  
+```
+modify a column constraints, cannot change name of column. Possible to change position of column.
+
+```
+ALTER TABLE [table name]  
+DROP COLUMN [col name];  
+```
+
+```
+ALTER TABLE [table name]  
+CHANGE COLUMN [old name] [new name]   
+[col definition]  
+[ FIRST | AFTER column_name ];
+```
+To rename the column and modify it's constraints.
+
+```
+ALTER TABLE [table name]
+RENAME TO [new table name];
+```
+
+`RENAME [old table name] TO [new table name];`
+provided the database is in use.
+
 
 ## References
 https://dev.mysql.com/doc/ <br>
