@@ -110,6 +110,33 @@ RENAME TO [new table name];
 provided the database is in use.
 
 
+## DML
+<!------------------------------------------------>
+```
+INSERT INTO [table_name] ( field1, field2,...fieldN )    
+VALUES    
+( value1, value2,...valueN ); # inserting single record
+```
+The fields are only necessary when we want to enter the data in different hierarchy.
+  
+```
+INSERT INTO [table_name] VALUES
+( value1, value2,...valueN )
+( value1, value2,...valueN )
+...........  
+( value1, value2,...valueN ); # inserting multiple records
+```
+if the fields are not mentioned all the values in the tuples. Inserting data format is YYYY-MM-DD as a string.
+
+```
+UPDATE [table_name]     
+SET [column_name1] = [new-value1],   
+    [column_name2] = [new-value2], 
+    ...    
+    [WHERE Clause]  
+```
+
+
 ## References
 https://dev.mysql.com/doc/ <br>
 https://www.w3schools.com/mysql/default.asp <br>
