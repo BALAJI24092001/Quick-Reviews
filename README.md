@@ -33,6 +33,9 @@ SHOW DATABASES WHERE [expression];
 
 `SHOW DATABASES;` 
 
+`SELECT DATABASE();` <br>
+To know on which database we are working on.
+
 `USE [database];` <br>
 Using this query we can start working on our database, provided the user have required privileges. <br>
 `DROP DATABASE [database];` <br>
@@ -136,7 +139,22 @@ SET [column_name1] = [new-value1],
     [WHERE Clause]  
 ```
 
+`DELETE FROM [table_name] WHERE [condition];`
 
+```
+DELETE FROM [table_name]  
+WHERE [condition]   
+ORDER BY [colm1], [colm2], ...  
+LIMIT [row_count];  
+```
+order by will sort the records and the limit clause restrict by only deleting first row_count number of rows only form the table.
+
+```
+DELETE [tab 1] [tab 2] FROM [tab 1]   
+INNER JOIN [tab2]      
+ON [tab 1].[PRIMARY KEY] = [tab 2].[FORIEGN KEY]      
+WHERE [tab 1].[PRIMARY KEY] = 102;  
+```
 ## References
 https://dev.mysql.com/doc/ <br>
 https://www.w3schools.com/mysql/default.asp <br>
