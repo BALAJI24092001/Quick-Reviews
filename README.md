@@ -252,6 +252,35 @@ FROM [tab1] INNER JOIN [tab2]
 ON [tab1].[col1] = [tab2].[col1];
 ```
 
+## TCL
+
+In MySql, AUTO-COMMIT will be enabled automatically, so, we cannot use TCL commands while it is on. To use TCL commands, we use `START TRANSACTION;` to diable the AUTO-COMMIT temporarily untill the `COMMIT;` query or `ROLLBACK;` query are used. If they are used, we need to againg start transaction, then we can use TCL commands.
+
+```
+START TRANSACTION;
+```
+
+```
+COMMIT;
+```
+The transaction control is more like version control, except we can control if we commit the changes to the databases server, since the transaction details are lost and the changes made will be permenant.
+
+```
+SAVEPOINT [savepoint name];
+```
+[name] is the savepoint, using this we can rollback to this state of database, considered that the changes are not commited.
+
+```
+ROLLBACK TO [savepoint name];
+```
+This rollbacks to the state where the savepoint is created. The savepoint name is optional, if it is not given, the rollback reverts to the previously commited state.
+
+```
+ROLLBACK;
+```
+Rollback to last commited state of database.
+
+
 ## Aggregate functions
 
 <table class="alt">
@@ -317,12 +346,29 @@ OR [condition_n];
 ```
 all the AND conditions and OR conditions must be seperated using round braces.
 example:
-SELECT *  
-FROM students  
-WHERE (course_name = 'Java' AND student_name = 'Aryan')  
+SELECT * <br>
+FROM students <br>  
+WHERE (course_name = 'Java' AND student_name = 'Aryan')<br>  
 OR (student_id < 2);  
 
+```
+WHERE [col name] LIKE [pattern]  
+```
+pattern is almost similar to RegExp, with escape charecters %(refers to multiple charecters), _(single charecter)
+Example:
+chan* can be compared to chandler, channel etc...
+chan_ler can be compared to chanaler, chandler etc...
 
+```
+WHERE [col name] NOT LIKE [pattern]
+```
+
+```
+WHERE [col name] IN (value1, value2, .... value_n);  
+```
+In condition is used to simplify multiple OR conditions used in a WHERE clause.
+Example: 
+WHERE age IN (18, 21, 25);
 ## References
 https://dev.mysql.com/doc/ <br>
 https://www.w3schools.com/mysql/default.asp <br>
