@@ -1,6 +1,6 @@
-PL/SQL
+-- PL/SQL
 
-It's a procedure language extension for SQL and Oracle relational database.
+/* It's a procedure language extension for SQL and Oracle relational database.
 
 # Basic syntax
 
@@ -13,7 +13,7 @@ It's a procedure language extension for SQL and Oracle relational database.
 	END;
 
 
-example: Print first 5 even numbers;
+example: Print first 5 even numbers; */
 	
 	DECLARE
 		i number;
@@ -27,6 +27,7 @@ example: Print first 5 even numbers;
 		end loop;
 		dbms_output.put_line("val of j is: " || j);
 	END;	
+/*
 Variables declared inside the declare block are global variables, and the variables in the declare block that we can define inside the BEGIN block are local variables.
 
 PLSQL variable attributes: 
@@ -38,11 +39,11 @@ example: SALARY EMP.SAL%TYPE;
 
 > %ROWTYPE:
 The %ROWTYPE attribute is used to declare a record type that represents a row in a table. The record can store an entire row or some specific data selected from the table. A column in a row and corresponding fields in a record have the same name and data types.
-example:
+example: */
 	EMPLOYEE EMP.%ROWTYPE;
 	EMPLOYEE.SAL := 10000;
 	EMPLOYEE.ENAME := "BALAJI";	
-
+/*
 PL/SQL constants:
 [constant name] CONSTANT [datatype] := [value];
 A constant value cannot be updated throughout the program.
@@ -54,6 +55,26 @@ PL/SQL data types:
 * Boolean		TRUE, FALSE
 * Date and Time		'06-12-2021', '06-12-2021 23:42:01'
 
-# Procedures
+IF - THEN:
+```
+IF [condition]
+THEN
+[statement] // It is executed whe the condition is true
+END IF;
+```
+
+IF-THEN-ELSE:
+```
+IF [codition]
+THEN
+[statement]
+ELSE 
+[statement]
+END IF;
+```
+
+*/
+
+-- # Procedures
 
 
