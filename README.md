@@ -1,10 +1,10 @@
 # MySQL Cheat Sheet
 
 
-## DDL
+## DDL (Data Definition Language)
 <!------------------------------------------------>
 ```
-CREATE DATABASE [database name];`
+CREATE DATABASE [database name];
 ```
 
 ```
@@ -120,7 +120,7 @@ RENAME [old table name] TO [new table name];
 provided the database is in use.
 
 
-## DML
+## DML (Data Manipulation Language)
 <!------------------------------------------------> 
 
                                   
@@ -167,7 +167,7 @@ ON [tab 1].[PRIMARY KEY] = [tab 2].[FORIEGN KEY]
 WHERE [tab 1].[PRIMARY KEY] = 102;  
 ```
 
-## DCL
+## DCL (Data Control Language)
 <!------------------------------------------------>
 ```
 GRANT [privileges] ON [object] TO [user@host];
@@ -194,7 +194,7 @@ eg: 'REVOKE INSERT(col1, col2), SELECT(col1), UPDATE(col2) ON student.user TO ba
 REVOKE PROXY ON [user] FROM [user];
 ```
 
-## DQL
+## DQL (Data Query Language)
 <!------------------------------------------------>   
 
 ```
@@ -252,7 +252,7 @@ FROM [tab1] INNER JOIN [tab2]
 ON [tab1].[col1] = [tab2].[col1];
 ```
 
-## TCL
+## TCL (Transaction Control Language)
 
 In MySql, AUTO-COMMIT will be enabled automatically, so, we cannot use TCL commands while it is on. To use TCL commands, we use `START TRANSACTION;` to diable the AUTO-COMMIT temporarily untill the `COMMIT;` query or `ROLLBACK;` query are used. If they are used, we need to againg start transaction, then we can use TCL commands.
 
